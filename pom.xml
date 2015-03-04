@@ -15,12 +15,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <mule.version>3.3.2</mule.version>
+        <mule.version>3.5.0</mule.version>
         <!-- Tools properties -->
         <eclipsePluginVersion>2.5</eclipsePluginVersion>
         <vmtype>org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType</vmtype>
-        <jdkName>JavaSE-1.6</jdkName>
-        <jdk.version>1.6</jdk.version>
+        <jdkName>JavaSE-1.7</jdkName>
+        <jdk.version>1.7</jdk.version>
     </properties>
 
     <build>
@@ -281,6 +281,13 @@
             <version>${mule.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.ext</groupId>
+            <artifactId>jersey-bean-validation</artifactId>
+            <version>2.16</version>
+        </dependency>
+
         <!-- for testing -->
         <dependency>
             <groupId>org.mule.tests</groupId>
@@ -327,8 +334,8 @@
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
-            <artifactId>org.json</artifactId>
-            <version>2.0-NEXUS-3758</version>
+            <artifactId>json</artifactId>
+            <version>20141113</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
@@ -338,6 +345,7 @@
 
     </dependencies>
 
+<!-- 
     <distributionManagement>
         <repository>
             <id>muleforge-releases</id>
@@ -351,15 +359,17 @@
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
-
+ -->
+ 
     <repositories>
+        <!-- 
         <repository>
             <id>muleforge-repo</id>
             <name>MuleForge Repository</name>
             <url>http://repository.muleforge.org</url>
             <layout>default</layout>
         </repository>
-
+        -->
         <repository>
             <id>codehaus-repo</id>
             <name>Codehaus Repository</name>
@@ -372,6 +382,17 @@
             <name>Central Repo</name>
             <url>http://repo1.maven.org/maven2/</url>
             <layout>default</layout>
+        </repository>
+        <repository>
+            <id>mvnrepository</id>
+            <name>Central Repo</name>
+            <url>http://mvnrepository.com/artifact/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>mule-ee-proxy</id>
+            <name>Hack to not use dev.ee.mulesource.com</name>
+            <url>https://repository.mulesoft.org/releases/</url>
         </repository>
     </repositories>
 </project>

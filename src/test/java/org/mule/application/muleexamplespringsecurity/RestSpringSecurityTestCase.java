@@ -26,7 +26,7 @@ public class RestSpringSecurityTestCase extends FunctionalTestCase {
     private MuleMessage response;
 
     public RestSpringSecurityTestCase() {
-        jsonOrder = "{\"orderId\":\"1\"," +
+        jsonOrder = "{\"champAValider\":null," +"\"orderId\":\"1\"," +
                 "\"customer\":{" +
                 "\"firstName\": \"David\"," +
                 "\"lastName\": \"Eason\"," +

@@ -2,6 +2,8 @@ package org.ordermanagement;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 
 
@@ -13,13 +15,26 @@ import org.codehaus.jackson.annotate.JsonAutoDetect;
 @JsonAutoDetect
 public class Order {
 
-	private String orderId;
+    @NotNull
+    private String champAValider;
+
+    private String orderId;
 
 	/** Customer associated with order */
 	private OrderPerson customer;
 
 	/** List of items on an order */
 	private List<OrderItem> items;
+
+    @NotNull
+    public String getChampAValider() {
+        return champAValider;
+    }
+
+    @NotNull
+    public void setChampAValider(String champAValider) {
+        this.champAValider = champAValider;
+    }
 
 	public String getOrderId() {
 		return orderId;

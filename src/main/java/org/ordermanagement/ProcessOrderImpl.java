@@ -1,11 +1,19 @@
 package org.ordermanagement;
 
-import org.springframework.security.access.annotation.Secured;
-
-import javax.ws.rs.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * REST Web service implementation.
@@ -22,10 +30,10 @@ public class ProcessOrderImpl implements IProcessOrder {
     private static Map<String, Order> map = new HashMap<String, Order>();
 
     /*
-      * (non-Javadoc)
-      *
-      * @see org.ordermgmt.IProcessOrder#retrieveOrder(String orderId)
-      */
+     * (non-Javadoc)
+     * 
+     * @see org.ordermgmt.IProcessOrder#retrieveOrder(String orderId)
+     */
 
     @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
     @Override
@@ -55,17 +63,17 @@ public class ProcessOrderImpl implements IProcessOrder {
     }
 
     /*
-      * (non-Javadoc)
-      *
-      * @see org.ordermgmt.IProcessOrder#createOrder()
-      */
+     * (non-Javadoc)
+     * 
+     * @see org.ordermgmt.IProcessOrder#createOrder()
+     */
 
     @Secured("ROLE_ADMIN")
     @Override
     @PUT
     @Produces("application/json")
     @Path("/order")
-    public OrderConfirmation createOrder(Order order) {
+    public OrderConfirmation createOrder(@Validated Order order) {
 
         orderConfirmation = new OrderConfirmation();
 
@@ -90,17 +98,17 @@ public class ProcessOrderImpl implements IProcessOrder {
     }
 
     /*
-      * (non-Javadoc)
-      *
-      * @see org.ordermgmt.IProcessOrder#updateOrder(org.ordermgmt.Order)
-      */
+     * (non-Javadoc)
+     * 
+     * @see org.ordermgmt.IProcessOrder#updateOrder(org.ordermgmt.Order)
+     */
 
     @Secured("ROLE_ADMIN")
     @Override
     @POST
     @Produces("application/json")
     @Path("/order")
-    public OrderConfirmation updateOrder(Order order) {
+    public OrderConfirmation updateOrder(@Validated Order order) {
 
         orderConfirmation = new OrderConfirmation();
 
@@ -122,10 +130,10 @@ public class ProcessOrderImpl implements IProcessOrder {
     }
 
     /*
-      * (non-Javadoc)
-      *
-      * @see org.ordermgmt.IProcessOrder#deleteOrder(String OrderId)
-      */
+     * (non-Javadoc)
+     * 
+     * @see org.ordermgmt.IProcessOrder#deleteOrder(String OrderId)
+     */
 
     @Secured("ROLE_ADMIN")
     @Override
@@ -157,9 +165,9 @@ public class ProcessOrderImpl implements IProcessOrder {
 
     // Hack to get around @Secured annotation messing with @PathParam parameter
     // Currently when I add @Secured annotation it invalidates @PathParam annotations and just passes entire URI into parameter field.
-    private String extractLastPathParam(String inParam){
+    private String extractLastPathParam(String inParam) {
 
-        String firstChar = inParam.substring(0,1);
+        String firstChar = inParam.substring(0, 1);
         String lastParam = inParam;
 
         if (firstChar.equals("/")) {
